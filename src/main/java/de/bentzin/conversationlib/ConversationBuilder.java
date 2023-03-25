@@ -107,12 +107,16 @@ public class ConversationBuilder {
     public @NotNull Conversation build(@NotNull Converser converser) {
         ConversationContext conversationContext = new ConversationContext(converser, getInitialSessionData(), getManager());
         if(firstPrompt == null) throw new IllegalStateException("cant build conversation! \"firstPrompt\" is not set!");
-        return new ImplConversation(firstPrompt,localEchoEnabled,prefix,initialSessionData,
+        return new Conversation(firstPrompt,localEchoEnabled,prefix,initialSessionData,
                 converserFilter,illegalConverser,endListeners, conversationContext);
     }
 
 
     public @NotNull ConversationManager getManager() {
         return manager;
+    }
+
+    public boolean hasFirstPrompt() {
+        return firstPrompt != null;
     }
 }

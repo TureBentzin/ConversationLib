@@ -2,6 +2,7 @@ package de.bentzin.conversationlib.prompt;
 
 import de.bentzin.conversationlib.ConversationContext;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.ComponentLike;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -16,9 +17,14 @@ public class StaticPrompt implements Prompt{
     private final @Nullable Prompt nextPrompt;
 
     public StaticPrompt(boolean blocksForInput, @NotNull Component promptMessage, @Nullable Prompt nextPrompt) {
-
         this.blocksForInput = blocksForInput;
         this.promptMessage = promptMessage;
+        this.nextPrompt = nextPrompt;
+    }
+
+    public StaticPrompt(boolean blocksForInput, @NotNull ComponentLike promptMessage, @Nullable Prompt nextPrompt) {
+        this.blocksForInput = blocksForInput;
+        this.promptMessage = promptMessage.asComponent();
         this.nextPrompt = nextPrompt;
     }
 

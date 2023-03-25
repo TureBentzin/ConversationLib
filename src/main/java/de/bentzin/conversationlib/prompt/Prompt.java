@@ -2,6 +2,7 @@ package de.bentzin.conversationlib.prompt;
 
 import de.bentzin.conversationlib.ConversationContext;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.ComponentLike;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -13,7 +14,7 @@ public interface Prompt {
 
     @Nullable Prompt END_OF_CONVERSATION = null;
 
-    @NotNull Component getPromptMessage(@NotNull ConversationContext conversationContext);
+    @NotNull ComponentLike getPromptMessage(@NotNull ConversationContext conversationContext);
 
     /**
      * Checks to see if this prompt implementation should wait for user input

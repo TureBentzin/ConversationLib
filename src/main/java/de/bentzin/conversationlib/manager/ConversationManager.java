@@ -1,5 +1,6 @@
 package de.bentzin.conversationlib.manager;
 
+import de.bentzin.conversationlib.ConversationBuilder;
 import de.bentzin.conversationlib.Converser;
 import net.kyori.adventure.audience.Audience;
 import org.jetbrains.annotations.NotNull;
@@ -91,5 +92,21 @@ public class ConversationManager {
 
     public void removeAudience(@NotNull Audience audience) {
         converserMap.remove(audience);
+    }
+
+    public @NotNull ConversationBuilder newBuilder() {
+        return new ConversationBuilder(this);
+    }
+
+    public @NotNull ConversationBuilder copyOf(@NotNull ConversationBuilder conversationBuilder) {
+        if(!conversationBuilder.hasFirstPrompt()) throw new IllegalStateException("conversationBuilder has no firstPrompt!");
+        return newBuilder().firstPrompt(conversationBuilder.getFirstPrompt())
+                .converserFilter(conversationBuilder.getConverserFilter())
+                .endListeners(conversationBuilder.getEndListeners())
+                .illegalConverserMessage(conversationBuilder.getIllegalConverser())
+                .localEchoEnabled(conversationBuilder.isLocalEchoEnabled())
+                .prefix(conversationBuilder.getPrefix())
+                .initialSessionData(conversationBuilder.getInitialSessionData());
+
     }
 }

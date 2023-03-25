@@ -2,6 +2,7 @@ package de.bentzin.conversationlib.prompt;
 
 import de.bentzin.conversationlib.ConversationContext;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.ComponentLike;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -14,11 +15,11 @@ import java.util.function.Function;
  */
 public class LambdaPrompt implements Prompt {
 
-    private final @NotNull Function<ConversationContext, Component> promptMessageFunction;
+    private final @NotNull Function<ConversationContext, ComponentLike> promptMessageFunction;
     private final @NotNull Function<ConversationContext, Boolean> blocksForInputFunction;
     private final @NotNull BiFunction<ConversationContext, String, Prompt> nextPromptFunction;
 
-    public LambdaPrompt(@NotNull Function<ConversationContext, Component> promptMessageFunction,
+    public LambdaPrompt(@NotNull Function<ConversationContext, ComponentLike> promptMessageFunction,
                         @NotNull Function<ConversationContext, Boolean> blocksForInputFunction,
                         @NotNull BiFunction<ConversationContext, String, Prompt> nextPromptFunction) {
         this.promptMessageFunction = promptMessageFunction;
@@ -27,7 +28,7 @@ public class LambdaPrompt implements Prompt {
     }
 
     @Override
-    public @NotNull Component getPromptMessage(@NotNull ConversationContext conversationContext) {
+    public @NotNull ComponentLike getPromptMessage(@NotNull ConversationContext conversationContext) {
         return promptMessageFunction.apply(conversationContext);
     }
 
