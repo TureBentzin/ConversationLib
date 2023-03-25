@@ -1,5 +1,6 @@
 package de.bentzin.conversationlib;
 
+import de.bentzin.conversationlib.prompt.Prompt;
 import de.bentzin.conversationlib.status.ConversationEndCause;
 import org.jetbrains.annotations.NotNull;
 
@@ -18,4 +19,5 @@ public interface Conversation {
     void end();
 
     void acceptInput(@NotNull String input);
+
 }

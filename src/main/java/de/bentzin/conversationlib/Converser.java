@@ -2,6 +2,7 @@ package de.bentzin.conversationlib;
 
 import de.bentzin.conversationlib.status.ConversationSkipped;
 import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.audience.ForwardingAudience;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayDeque;
@@ -15,7 +16,7 @@ import java.util.function.Predicate;
  * @author Ture Bentzin
  * 25.03.2023
  */
-public class Converser {
+public final class Converser implements ForwardingAudience.Single {
 
     private final @NotNull Audience target;
     private final @NotNull ArrayDeque<Conversation> conversations;
@@ -76,4 +77,10 @@ public class Converser {
         }
         return false;
     }
+
+    @Override
+    public @NotNull Audience audience() {
+        return target;
+    }
+
 }

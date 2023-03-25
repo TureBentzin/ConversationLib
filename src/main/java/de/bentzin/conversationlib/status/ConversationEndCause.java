@@ -15,5 +15,6 @@ public interface ConversationEndCause {
     enum Type {
         END_OF_CONVERSATION,
         ABORTED,
+        UNKNOWN,
     }
 }
