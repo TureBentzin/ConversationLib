@@ -58,7 +58,7 @@ public abstract class ValidatingPrompt implements Prompt {
      * Override this method to check the validity of the player's input.
      *
      * @param context Context information about the conversation.
-     * @param input The player's raw console input.
+     * @param input The input.
      * @return True or false depending on the validity of the input.
      */
     protected abstract boolean isInputValid(@NotNull ConversationContext context, @NotNull String input);
